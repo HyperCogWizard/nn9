@@ -1,2 +1,7 @@
 build/
 THNN_h.lua
+
+# P9ML generated files
+/tmp/p9ml_visualizations/
+*.dot.png
+*.dot.svg

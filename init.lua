@@ -220,5 +220,12 @@ require('nn.SparseJacobian')
 require('nn.hessian')
 require('nn.test')
 
+-- P9ML Membrane Computing System Integration
+require('nn.P9MLMembrane')
+require('nn.P9MLNamespace')
+require('nn.P9MLCognitiveKernel')
+require('nn.P9MLEvolution')
+require('nn.P9MLVisualizer')
+require('nn.P9MLTest')
 
 return nn
