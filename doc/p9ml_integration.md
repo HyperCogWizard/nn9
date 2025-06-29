@@ -1,37 +1,239 @@
 # P9ML Membrane Computing System Integration
 
+> **🧠 Comprehensive Guide to P9ML Integration**: Transforming traditional neural networks into cognitive computing architectures with adaptive, self-modifying capabilities.
+
+## Table of Contents
+- [Overview](#overview)
+- [Architecture](#architecture)
+- [Core Components](#core-components)
+- [Integration Examples](#integration-examples)
+- [Testing](#testing)
+- [Meta-Learning and Adaptation](#meta-learning-and-adaptation)
+- [Frame Problem Resolution](#frame-problem-resolution)
+- [Performance Optimization](#performance-optimization)
+- [Advanced Usage](#advanced-usage)
+
+---
+
 ## Overview
 
-This document describes the integration of the P9ML Membrane Computing System with the Neural Network Package, establishing a foundational agentic cognitive grammar for distributed, recursive, and adaptive neural-symbolic computation.
+This document describes the integration of the **P9ML Membrane Computing System** with the Neural Network Package, establishing a foundational agentic cognitive grammar for distributed, recursive, and adaptive neural-symbolic computation.
+
+### Key Innovations
+- **Membrane-embedded neural layers** with cognitive capabilities
+- **Cognitive grammar kernel** for hypergraph representation
+- **Distributed namespace management** for complex coordination
+- **Evolution rules** for adaptive behavior and optimization
+- **Frame problem resolution** through nested embeddings
+
+---
 
 ## Architecture
 
-### Cognitive Flowchart
+### Cognitive Computing Flow
 
+```mermaid
+graph TB
+    subgraph "Traditional Neural Network"
+        TI[Input] --> TL1[Linear Layer]
+        TL1 --> TA1[Activation]
+        TA1 --> TL2[Linear Layer]
+        TL2 --> TO[Output]
+    end
+    
+    subgraph "P9ML Enhanced Network"
+        PI[Input] --> PM1[P9ML Membrane 1]
+        PM1 --> PEV1[Evolution Rules]
+        PEV1 --> PQ1[Quantization]
+        PQ1 --> PA1[Activation]
+        PA1 --> PM2[P9ML Membrane 2]
+        PM2 --> PEV2[Evolution Rules]
+        PEV2 --> PQ2[Quantization]
+        PQ2 --> PO[Output]
+        
+        PM1 -.-> NS[Namespace]
+        PM2 -.-> NS
+        NS -.-> CK[Cognitive Kernel]
+        CK -.-> GF[Gestalt Field]
+    end
+    
+    style PM1 fill:#ffebee
+    style PM2 fill:#ffebee
+    style CK fill:#fff3e0
+    style GF fill:#e8f5e8
 ```
-P9ML Membrane ↔ NN Layer ↔ Namespace
-      ↓              ↓         ↓
-Tensor Shape = Lexeme; Membrane = Grammar Rule; Namespace = Meta-Grammar
-      ↓              ↓         ↓
-Evolution & QAT = Grammar Transformation
-      ↓
-Hypergraph Kernel = Cognitive Field
+
+### Cognitive Grammar Mapping
+
+```mermaid
+graph LR
+    subgraph "Neural Components"
+        TS[Tensor Shapes]
+        MEM[Membranes]
+        NS[Namespaces]
+    end
+    
+    subgraph "Cognitive Grammar"
+        LEX[Lexemes]
+        GR[Grammar Rules]
+        MG[Meta-Grammar]
+    end
+    
+    subgraph "Hypergraph Kernel"
+        HG[Hypergraph]
+        PF[Prime Factors]
+        GF[Gestalt Fields]
+        FP[Frame Resolution]
+    end
+    
+    TS --> LEX
+    MEM --> GR
+    NS --> MG
+    
+    LEX --> HG
+    GR --> HG
+    MG --> HG
+    
+    HG --> PF
+    HG --> GF
+    HG --> FP
+    
+    style LEX fill:#e1f5fe
+    style GR fill:#f3e5f5
+    style MG fill:#e8f5e8
 ```
 
-### Core Components
+### Component Interaction Flow
 
-#### 1. P9MLMembrane (`P9MLMembrane.lua`)
+```mermaid
+sequenceDiagram
+    participant Input as Input Tensor
+    participant Membrane as P9ML Membrane
+    participant Evolution as Evolution Engine
+    participant Namespace as P9ML Namespace
+    participant Kernel as Cognitive Kernel
+    participant Output as Enhanced Output
+    
+    Input->>Membrane: forward(input)
+    Membrane->>Membrane: analyze tensor vocabulary
+    Membrane->>Evolution: apply evolution rules
+    Evolution->>Membrane: evolved parameters
+    Membrane->>Namespace: register activity
+    Namespace->>Kernel: update cognitive state
+    Kernel->>Kernel: generate gestalt field
+    Kernel->>Namespace: cognitive feedback
+    Namespace->>Membrane: orchestration updates
+    Membrane->>Output: transformed output
+    
+    Note over Membrane,Kernel: Cognitive Loop
+    Note over Evolution,Namespace: Adaptation Loop
+```
 
-The P9MLMembrane wraps existing neural network layers, embedding them as membrane objects with cognitive and evolutionary capabilities.
+---
 
-**Key Features:**
+## Core Components
+
+### Component Overview
+
+```mermaid
+graph TD
+    subgraph "P9ML Core Architecture"
+        subgraph "Layer 1: Membrane Computing"
+            MEM[P9MLMembrane]
+            EVO[Evolution Rules]
+            QAT[Quantization Engine]
+        end
+        
+        subgraph "Layer 2: Coordination"
+            NS[P9MLNamespace]
+            HG[Hypergraph Topology]
+            META[Meta-Learning]
+        end
+        
+        subgraph "Layer 3: Cognition"
+            CK[Cognitive Kernel]
+            LEX[Lexicon]
+            GR[Grammar Engine]
+            FP[Frame Resolver]
+        end
+        
+        subgraph "Layer 4: Visualization & Testing"
+            VIZ[P9MLVisualizer]
+            TEST[P9MLTest]
+        end
+    end
+    
+    MEM --> NS
+    MEM --> CK
+    EVO --> MEM
+    QAT --> MEM
+    
+    NS --> CK
+    HG --> NS
+    META --> NS
+    
+    LEX --> CK
+    GR --> CK
+    FP --> CK
+    
+    VIZ -.-> MEM
+    VIZ -.-> NS
+    VIZ -.-> CK
+    TEST -.-> MEM
+    TEST -.-> NS
+    TEST -.-> CK
+    
+    style MEM fill:#ffebee
+    style NS fill:#e8f5e8
+    style CK fill:#fff3e0
+    style VIZ fill:#f3e5f5
+```
+
+### 1. P9MLMembrane (`P9MLMembrane.lua`)
+
+The **P9MLMembrane** wraps existing neural network layers, embedding them as membrane objects with cognitive and evolutionary capabilities.
+
+#### Architecture
+
+```mermaid
+classDiagram
+    class P9MLMembrane {
+        +membrane_id: string
+        +tensor_vocabulary: table
+        +membrane_objects: table
+        +evolution_rules: table
+        +qat_state: table
+        
+        +__init(module, membrane_id)
+        +addEvolutionRule(rule)
+        +enableQuantization(bits, scale)
+        +updateOutput(input)
+        +updateGradInput(input, gradOutput)
+        +getMembraneInfo()
+        +_analyzeTensorShapes(module)
+        +_evolveMembraneState()
+        +_applyMembraneTransformation(output)
+    }
+    
+    class MembraneObject {
+        +tensor: Tensor
+        +gradient: Tensor
+        +membrane_id: string
+        +evolution_state: string
+        +quantum_state: table
+    }
+    
+    P9MLMembrane ||--o{ MembraneObject
+```
+
+#### Key Features:
 - **Tensor Vocabulary Analysis**: Automatically extracts tensor shapes as dynamic vocabulary
 - **Membrane Object Attachment**: Attaches weights/parameters as membrane objects with quantum-inspired states
 - **Evolution Integration**: Supports multiple evolution rules for adaptive behavior
 - **Quantization Aware Training**: Implements data-free QAT with configurable precision
 - **Cognitive Transformations**: Applies membrane-specific transformations during forward/backward passes
 
-**Example Usage:**
+#### Example Usage:
 ```lua
 local linear = nn.Linear(10, 5)
 local membrane = nn.P9MLMembrane(linear, 'cognitive_layer_1')
@@ -47,18 +249,71 @@ membrane:addEvolutionRule(nn.P9MLEvolutionFactory.createAdaptiveQuantization(8, 
 local output = membrane:forward(input)
 ```
 
-#### 2. P9MLNamespace (`P9MLNamespace.lua`)
+### 2. P9MLNamespace (`P9MLNamespace.lua`)
 
-The P9MLNamespace manages distributed computation and global state across multiple membrane-embedded layers.
+The **P9MLNamespace** manages distributed computation and global state across multiple membrane-embedded layers, providing cognitive coordination and meta-learning capabilities.
 
-**Key Features:**
+#### Architecture
+
+```mermaid
+graph TB
+    subgraph "Namespace Core"
+        NS[P9MLNamespace]
+        REG[Membrane Registry]
+        GS[Global State]
+    end
+    
+    subgraph "Hypergraph Management"
+        HT[Hypergraph Topology]
+        CS[Cognitive Signatures]
+        SM[Similarity Mapping]
+    end
+    
+    subgraph "Orchestration Engine"
+        OR[Orchestration Rules]
+        MR[Meta Rules]
+        ML[Meta-Learning]
+    end
+    
+    subgraph "Registered Membranes"
+        M1[Membrane 1]
+        M2[Membrane 2]
+        M3[Membrane 3]
+        MN[Membrane N]
+    end
+    
+    NS --> REG
+    NS --> GS
+    REG --> HT
+    HT --> CS
+    CS --> SM
+    
+    NS --> OR
+    OR --> MR
+    MR --> ML
+    
+    REG --> M1
+    REG --> M2
+    REG --> M3
+    REG --> MN
+    
+    M1 -.->|Similarity| M2
+    M2 -.->|Topology| M3
+    M3 -.->|Meta-connection| MN
+    
+    style NS fill:#e8f5e8
+    style HT fill:#f3e5f5
+    style ML fill:#fff3e0
+```
+
+#### Key Features:
 - **Distributed Registration**: Registers membrane-embedded layers for distributed computation
 - **Hypergraph Topology**: Maintains connections between membranes based on cognitive similarity
 - **Computation Orchestration**: Coordinates computation across multiple membranes
 - **Meta-Learning Support**: Enables recursive namespace-level adaptation
 - **Global State Management**: Maintains global computational state and interaction history
 
-**Example Usage:**
+#### Example Usage:
 ```lua
 local namespace = nn.P9MLNamespace('distributed_net')
 
@@ -71,20 +326,91 @@ local results = namespace:orchestrateComputation(input_data, computation_graph)
 
 -- Apply meta-learning
 namespace:applyMetaLearning()
+
+-- Get namespace statistics
+local state = namespace:getNamespaceState()
+print(string.format("Registered membranes: %d", state.registered_count))
+print(string.format("Hypergraph nodes: %d", state.hypergraph_stats.nodes))
 ```
 
-#### 3. P9MLCognitiveKernel (`P9MLCognitiveKernel.lua`)
+### 3. P9MLCognitiveKernel (`P9MLCognitiveKernel.lua`)
 
-The cognitive kernel implements a hypergraph-based cognitive lexicon and grammar transformation system.
+The **Cognitive Kernel** implements a hypergraph-based cognitive lexicon and grammar transformation system, providing the foundation for cognitive reasoning and frame problem resolution.
 
-**Key Features:**
+#### Architecture
+
+```mermaid
+graph TB
+    subgraph "Cognitive Kernel Core"
+        CK[P9MLCognitiveKernel]
+        HG[Hypergraph Structure]
+    end
+    
+    subgraph "Lexical Layer"
+        LEX[Lexemes]
+        PF[Prime Factor Decomposition]
+        SW[Semantic Weights]
+        GR_ROLE[Grammatical Roles]
+    end
+    
+    subgraph "Grammar Layer"
+        GRAM[Grammar Rules]
+        PROD[Production Systems]
+        TRANS[Transformation Rules]
+        SYN[Syntactic Rules]
+    end
+    
+    subgraph "Meta Layer"
+        MG[Meta-Grammar]
+        FE[Frame Embeddings]
+        NC[Nested Contexts]
+        CR[Context Resolution]
+    end
+    
+    subgraph "Gestalt Layer"
+        GF[Gestalt Fields]
+        CC[Cognitive Coherence]
+        FP[Frame Resolution]
+        UNITY[Unified Representation]
+    end
+    
+    CK --> HG
+    HG --> LEX
+    HG --> GRAM
+    HG --> MG
+    
+    LEX --> PF
+    LEX --> SW
+    LEX --> GR_ROLE
+    
+    GRAM --> PROD
+    GRAM --> TRANS
+    GRAM --> SYN
+    
+    MG --> FE
+    MG --> NC
+    MG --> CR
+    
+    HG --> GF
+    GF --> CC
+    GF --> FP
+    GF --> UNITY
+    
+    style CK fill:#fff3e0
+    style LEX fill:#e1f5fe
+    style GRAM fill:#f3e5f5
+    style MG fill:#e8f5e8
+    style GF fill:#fce4ec
+```
+
+#### Key Features:
 - **Lexical Management**: Stores tensor shapes as lexemes with prime factor decomposition
 - **Grammar Rules**: Represents membranes as grammar rules with production systems
 - **Meta-Grammar**: Incorporates namespaces as meta-grammatical structures
 - **Frame Problem Resolution**: Resolves the frame problem using nested membrane embeddings
 - **Gestalt Field Generation**: Creates unified gestalt tensor fields from all components
 
-**Example Usage:**
+#### Example Usage:
 ```lua
 local kernel = nn.P9MLCognitiveKernel()
 
