@@ -427,11 +427,57 @@ local gestalt_tensor = kernel:generateGestaltField()
 local resolution = kernel:resolveFrameProblem(context, query_tensor)
 ```
 
-#### 4. P9MLEvolution (`P9MLEvolution.lua`)
+### 4. P9MLEvolution (`P9MLEvolution.lua`)
 
-The evolution system implements various evolution rules for membrane adaptation and learning.
+The **Evolution System** implements various evolution rules for membrane adaptation and learning, enabling networks to self-modify during training.
 
-**Evolution Rule Types:**
+#### Evolution Rule Architecture
+
+```mermaid
+classDiagram
+    class P9MLEvolutionRule {
+        +rule_type: string
+        +parameters: table
+        +activation_count: number
+        +success_rate: number
+        +adaptation_history: table
+        
+        +apply(membrane_objects)
+        +_shouldApplyTo(membrane_obj)
+        +_applyRuleToObject(membrane_obj)
+        +getEvolutionStats()
+        +adapt()
+    }
+    
+    class GradientEvolution {
+        +learning_rate: number
+        +momentum: number
+        
+        +_applyGradientEvolution(obj)
+        +_calculateAdaptiveScale(gradient)
+    }
+    
+    class AdaptiveQuantization {
+        +target_bits: number
+        +scale_factor: number
+        
+        +_applyAdaptiveQuantization(obj)
+        +_quantizeTensor(tensor, scale, bits)
+    }
+    
+    class CognitiveAdaptation {
+        +cognitive_threshold: number
+        +adaptation_strength: number
+        
+        +_applyCognitiveAdaptation(obj)
+    }
+    
+    P9MLEvolutionRule <|-- GradientEvolution
+    P9MLEvolutionRule <|-- AdaptiveQuantization
+    P9MLEvolutionRule <|-- CognitiveAdaptation
+```
+
+#### Evolution Rule Types:
 - **Gradient Evolution**: Momentum-based evolution using gradient information
 - **Weight Decay**: Selective or standard weight decay with evolution tracking
 - **Quantum Fluctuation**: Quantum-inspired fluctuations with coherence management
@@ -439,7 +485,7 @@ The evolution system implements various evolution rules for membrane adaptation 
 - **Cognitive Adaptation**: Usage pattern-based adaptation with memory traces
 - **Membrane Fusion**: Inter-membrane evolution and fusion capabilities
 
-**Example Usage:**
+#### Example Usage:
 ```lua
 -- Create evolution rules
 local grad_rule = nn.P9MLEvolutionFactory.createGradientEvolution(0.01, 0.9)
@@ -448,6 +494,75 @@ local quantum_rule = nn.P9MLEvolutionFactory.createQuantumFluctuation(0.001, 0.1
 
 -- Apply to membrane
 membrane:addEvolutionRule(grad_rule)
+membrane:addEvolutionRule(decay_rule)
+```
+
+---
+
+## Integration Workflow
+
+### Step-by-Step Integration Process
+
+```mermaid
+flowchart TD
+    START[Start with Traditional NN] --> ANALYZE[Analyze Network Architecture]
+    ANALYZE --> IDENTIFY[Identify Key Layers for Membranes]
+    IDENTIFY --> WRAP[Wrap Layers in P9ML Membranes]
+    WRAP --> EVOLVE[Add Evolution Rules]
+    EVOLVE --> NAMESPACE[Create P9ML Namespace]
+    NAMESPACE --> REGISTER[Register Membranes]
+    REGISTER --> KERNEL[Create Cognitive Kernel]
+    KERNEL --> LEXEMES[Add Lexemes for Tensor Shapes]
+    LEXEMES --> GRAMMAR[Add Grammar Rules for Membranes]
+    GRAMMAR --> TRAIN[Train with Cognitive Enhancements]
+    TRAIN --> META[Apply Meta-Learning]
+    META --> GESTALT[Generate Gestalt Fields]
+    GESTALT --> OPTIMIZE[Optimize and Analyze]
+    OPTIMIZE --> DEPLOY[Deploy Enhanced System]
+    
+    style WRAP fill:#ffebee
+    style NAMESPACE fill:#e8f5e8
+    style KERNEL fill:#fff3e0
+    style GESTALT fill:#fce4ec
+```
+
+### Integration Decision Tree
+
+```mermaid
+flowchart TD
+    NETWORK[Neural Network] --> SIZE{Network Size}
+    SIZE -->|Small <10K params| BASIC[Basic P9ML]
+    SIZE -->|Medium 10K-1M| FULL[Full P9ML System]
+    SIZE -->|Large >1M| SELECTIVE[Selective Membranes]
+    
+    BASIC --> MEMBRANE1[Wrap Key Layers Only]
+    FULL --> MEMBRANE2[Wrap All Linear/Conv Layers]
+    SELECTIVE --> MEMBRANE3[Wrap Bottleneck Layers]
+    
+    MEMBRANE1 --> RULES1[Simple Evolution Rules]
+    MEMBRANE2 --> RULES2[Comprehensive Rules + QAT]
+    MEMBRANE3 --> RULES3[Advanced Rules + Meta-Learning]
+    
+    RULES1 --> NAMESPACE1[Basic Namespace]
+    RULES2 --> NAMESPACE2[Full Namespace + Kernel]
+    RULES3 --> NAMESPACE3[Distributed Namespace]
+    
+    style BASIC fill:#e3f2fd
+    style FULL fill:#fff3e0
+    style SELECTIVE fill:#e8f5e8
+```
+
+### Configuration Guidelines
+
+| Network Type | Recommended Components | Key Benefits |
+|-------------|----------------------|--------------|
+| **Small MLPs** | Basic membranes + simple evolution | Minimal overhead, basic adaptation |
+| **CNNs** | Full membranes + quantization + namespace | Memory efficiency, feature evolution |
+| **RNNs/LSTMs** | Selective membranes + cognitive kernel | Temporal reasoning, memory management |
+| **Large Models** | Distributed membranes + meta-learning | Scalability, advanced adaptation |
+| **Ensemble Networks** | Multiple namespaces + coordination | Cognitive coordination, ensemble learning |
+
+---
 membrane:addEvolutionRule(decay_rule)
 ```
 
@@ -700,3 +815,148 @@ The P9ML Membrane Computing System integration provides a comprehensive framewor
 This creates a dynamic catalog of agentic cognitive grammar where ggml-based kernels with unique prime-factor tensor shapes form a unified gestalt tensor field, effectively addressing the frame problem through nested membrane embeddings.
 
 The system is fully tested and ready for integration with existing neural network workflows while providing advanced cognitive and evolutionary capabilities.
+
+---
+
+## Advanced Usage
+
+### Multi-Modal Cognitive Networks
+
+```mermaid
+graph TB
+    subgraph "Vision Branch"
+        VI[Vision Input] --> CM1[Conv Membrane 1]
+        CM1 --> CM2[Conv Membrane 2]
+        CM2 --> VF[Vision Features]
+    end
+    
+    subgraph "Text Branch"
+        TI[Text Input] --> EM[Embedding Membrane]
+        EM --> RM[RNN Membrane]
+        RM --> TF[Text Features]
+    end
+    
+    subgraph "Fusion Layer"
+        VF --> FM[Fusion Membrane]
+        TF --> FM
+        FM --> OF[Output Features]
+    end
+    
+    subgraph "Cognitive Coordination"
+        NS[Shared Namespace]
+        CK[Cognitive Kernel]
+        NS --> CK
+        CM1 -.-> NS
+        CM2 -.-> NS
+        EM -.-> NS
+        RM -.-> NS
+        FM -.-> NS
+    end
+    
+    style NS fill:#e8f5e8
+    style CK fill:#fff3e0
+```
+
+### Cognitive Transfer Learning
+
+```lua
+-- Load pre-trained model
+local pretrained = torch.load('pretrained_model.t7')
+
+-- Wrap layers in P9ML membranes
+local cognitive_layers = {}
+for i, layer in ipairs(pretrained.modules) do
+    if torch.type(layer) == 'nn.Linear' or torch.type(layer):find('Convolution') then
+        local membrane = nn.P9MLMembrane(layer, 'transfer_layer_' .. i)
+        
+        -- Add cognitive adaptation for transfer learning
+        membrane:addEvolutionRule(nn.P9MLEvolutionFactory.createCognitiveAdaptation(0.5, 0.2))
+        table.insert(cognitive_layers, membrane)
+    end
+end
+
+-- Create cognitive transfer namespace
+local transfer_namespace = nn.P9MLNamespace('transfer_learning')
+for _, membrane in ipairs(cognitive_layers) do
+    transfer_namespace:registerMembrane(membrane)
+end
+
+-- Apply meta-learning for domain adaptation
+transfer_namespace:applyMetaLearning()
+```
+
+### Performance Optimization Strategies
+
+1. **Selective Membrane Wrapping**
+   ```lua
+   -- Only wrap computationally intensive layers
+   local important_layers = {'Linear', 'SpatialConvolution', 'LSTM'}
+   for i, module in ipairs(network.modules) do
+       if table.contains(important_layers, torch.type(module)) then
+           local membrane = nn.P9MLMembrane(module, 'layer_' .. i)
+           membrane:enableQuantization(8, 0.1)
+       end
+   end
+   ```
+
+2. **Adaptive Evolution Frequency**
+   ```lua
+   -- Reduce evolution frequency for stable networks
+   local rule = nn.P9MLEvolutionFactory.createGradientEvolution(0.01, 0.9)
+   rule.parameters.application_frequency = 0.1  -- Apply only 10% of the time
+   membrane:addEvolutionRule(rule)
+   ```
+
+---
+
+## Testing and Validation
+
+### Comprehensive Test Suite
+
+The P9ML system includes comprehensive tests in `P9MLTest.lua`:
+
+```lua
+-- Run all P9ML tests
+local P9MLTest = require('nn.P9MLTest')
+local all_passed = P9MLTest.runAllTests()
+
+if all_passed then
+    print("P9ML Membrane Computing System is fully operational!")
+else
+    print("Some tests failed - please check implementation")
+end
+```
+
+### Test Categories
+
+1. **Membrane Tests**: Basic membrane creation, forward/backward passes, quantization
+2. **Namespace Tests**: Registration, orchestration, meta-learning
+3. **Cognitive Kernel Tests**: Lexeme management, grammar rules, gestalt fields
+4. **Evolution Tests**: Rule creation, application, adaptation
+5. **Integration Tests**: Full system integration, meta-learning loops
+
+---
+
+## See Also
+
+### Documentation Links
+- [📖 **Main README**](../README.md) - Project overview and quick start
+- [🏗️ **Technical Architecture**](../ARCHITECTURE.md) - Detailed system architecture
+- [🔧 **API Reference**](api_reference.md) - Complete API documentation
+- [📊 **Performance Benchmarks**](benchmarks.md) - Performance analysis and comparisons
+- [🧪 **Examples**](../examples/p9ml_example.lua) - Comprehensive usage examples
+
+### Community Resources
+- [💬 **Discussion Forum**](https://github.com/HyperCogWizard/nn9/discussions)
+- [🐛 **Issue Tracker**](https://github.com/HyperCogWizard/nn9/issues)
+- [🤝 **Contributing Guide**](../CONTRIBUTING.md)
+
+---
+
+<div align="center">
+
+**[🏠 Return to Main Documentation](../README.md)**
+
+*Explore the revolutionary world of cognitive neural networks with P9ML*
+
+</div>
