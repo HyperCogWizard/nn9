@@ -14,6 +14,7 @@
 - [📚 Documentation](#-documentation)
 - [🧪 Examples](#-examples)
 - [⚡ Performance](#-performance)
+- [🛣️ Development Roadmap](#️-development-roadmap)
 - [🤝 Contributing](#-contributing)
 
 ---
@@ -257,6 +258,7 @@ graph TD
 
 ### Additional Resources
 - [🧬 Experimental Modules](https://github.com/clementfarabet/lua---nnx/blob/master/README.md): Package containing experimental modules and criteria
+- [🛣️ Development Roadmap](ROADMAP.md): Strategic development plan with phases and actionable items
 
 ---
 
@@ -316,6 +318,30 @@ kernel:addLexeme({128, 10}, 'classification_transformation')
 
 ---
 
+## 🛣️ Development Roadmap
+
+The HyperCogWizard nn9 project follows a structured development plan to advance P9ML membrane computing capabilities:
+
+### 📋 Strategic Plan
+- **[Complete Development Roadmap](ROADMAP.md)**: 18-month strategic plan with 6 phases
+- **[Quick Reference](ROADMAP_QUICK.md)**: Current priorities and next quarter goals  
+- **[Milestones Tracking](MILESTONES.md)**: Progress tracking and metrics dashboard
+- **[Phase 1 Action Items](PHASE1_ACTIONS.md)**: Detailed sprint planning for current phase
+
+### 🎯 Current Phase: Foundation Consolidation (Months 1-2)
+- **Objective**: Stabilize P9ML foundation with comprehensive testing
+- **Key Goals**: 95% test coverage, performance baselines, API standardization
+- **Next Milestone**: Complete migration tutorial and 10+ working examples
+
+### 📈 Upcoming Phases
+1. **Phase 2** (Months 3-5): Core P9ML Enhancement - Advanced evolution rules and cognitive kernels
+2. **Phase 3** (Months 6-8): Advanced Cognitive Features - Gestalt fields and meta-learning
+3. **Phase 4** (Months 9-11): Performance & Scalability - Production optimization
+4. **Phase 5** (Months 12-14): Ecosystem Integration - Framework bridges and tools
+5. **Phase 6** (Months 15-18): Research & Innovation - Neuromorphic and quantum computing
+
+---
+
 ## 🤝 Contributing
 
 We welcome contributions to both the core neural network package and the P9ML system!
@@ -370,7 +396,7 @@ This project is licensed under the BSD 3-Clause License - see the [COPYRIGHT.txt
 
 <div align="center">
 
-**[🧠 Explore P9ML Documentation](doc/p9ml_integration.md) | [🏗️ View Architecture Details](ARCHITECTURE.md) | [🧪 Try Examples](examples/)**
+**[🧠 Explore P9ML Documentation](doc/p9ml_integration.md) | [🏗️ View Architecture Details](ARCHITECTURE.md) | [🛣️ Development Roadmap](ROADMAP.md) | [🧪 Try Examples](examples/)**
 
 *Transform your neural networks with cognitive computing capabilities*
 
