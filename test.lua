@@ -9101,10 +9101,49 @@ function nntest.FeatureLPPooling()
    testJacobian3dBatch()
 end
 
+-- P9ML Membrane Computing System Test Integration
+function nntest.P9MLMembrane()
+   local P9MLTestSuite = require 'test.P9MLTestSuite'
+   P9MLTestSuite.P9MLMembrane()
+end
+
+function nntest.P9MLNamespace()
+   local P9MLTestSuite = require 'test.P9MLTestSuite'
+   P9MLTestSuite.P9MLNamespace()
+end
+
+function nntest.P9MLCognitiveKernel()
+   local P9MLTestSuite = require 'test.P9MLTestSuite'
+   P9MLTestSuite.P9MLCognitiveKernel()
+end
+
+function nntest.P9MLEvolution()
+   local P9MLTestSuite = require 'test.P9MLTestSuite'
+   P9MLTestSuite.P9MLEvolution()
+end
+
+function nntest.P9MLIntegration()
+   local P9MLTestSuite = require 'test.P9MLTestSuite'
+   P9MLTestSuite.P9MLIntegration()
+end
+
+function nntest.P9MLStressTesting()
+   local P9MLTestSuite = require 'test.P9MLTestSuite'
+   P9MLTestSuite.P9MLStressTesting()
+end
+
+-- Comprehensive P9ML test coverage validation
+function nntest.P9MLComprehensive()
+   local P9MLTestSuite = require 'test.P9MLTestSuite'
+   local success = P9MLTestSuite.runFullSuite()
+   mytester:assert(success, "P9ML Comprehensive Test Suite with 95%+ coverage")
+end
+
 mytester:add(nntest)
 
 jac = nn.Jacobian
 sjac = nn.SparseJacobian
+
 function nn.test(tests, seed)
    -- Limit number of threads since everything is small
    local nThreads = torch.getnumthreads()
@@ -9123,4 +9162,51 @@ function nn.testTHNN(tests, seed)
    require 'test.LinearTHNN'
    nn.Linear = nn.LinearTHNN
    return nn.test(tests,seed)
+end
+
+-- P9ML Membrane Computing System Test Functions
+function nn.testP9ML(tests, seed, coverage_report)
+   -- Run P9ML-specific tests with coverage reporting
+   local nThreads = torch.getnumthreads()
+   torch.setnumthreads(1)
+   
+   local seed = seed or (1e5 * torch.tic())
+   print('P9ML Test Seed: ', seed)
+   math.randomseed(seed)
+   torch.manualSeed(seed)
+   
+   local P9MLTestSuite = require 'test.P9MLTestSuite'
+   
+   if tests then
+      -- Run specific P9ML tests
+      local p9ml_tests = {}
+      for _, test in ipairs(tests) do
+         if test:find('P9ML') then
+            table.insert(p9ml_tests, test)
+         end
+      end
+      
+      if #p9ml_tests > 0 then
+         mytester:run(p9ml_tests)
+      end
+   else
+      -- Run comprehensive P9ML test suite
+      local success = P9MLTestSuite.runFullSuite()
+      if not success then
+         print("⚠️  P9ML test suite did not meet all requirements")
+      end
+   end
+   
+   if coverage_report then
+      P9MLTestSuite.reportCoverage()
+   end
+   
+   torch.setnumthreads(nThreads)
+   return mytester
+end
+
+-- P9ML Benchmarking function
+function nn.benchmarkP9ML()
+   local P9MLTestSuite = require 'test.P9MLTestSuite'
+   P9MLTestSuite.runBenchmarks()
 end
