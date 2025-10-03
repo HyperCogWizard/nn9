@@ -38,6 +38,19 @@ function P9MLTestSuite.P9MLMembrane()
    mytester:assert(success, "P9ML Membrane Error Handling: " .. (error_msg or ""))
 end
 
+function P9MLTestSuite.P9MLPerformanceBenchmark()
+   local mytester = torch.Tester()
+   
+   -- Load and run performance benchmark tests
+   local success, P9MLPerformanceBenchmarkTest = pcall(require, 'test.P9MLPerformanceBenchmarkTest')
+   mytester:assert(success, "P9ML Performance Benchmark Test module should load")
+   
+   if success then
+      local bench_success, error_msg = pcall(P9MLPerformanceBenchmarkTest.P9MLPerformanceBenchmark)
+      mytester:assert(bench_success, "P9ML Performance Benchmark: " .. (error_msg or ""))
+   end
+end
+
 function P9MLTestSuite.P9MLNamespace()
    local mytester = torch.Tester()
    
